@@ -1,0 +1,60 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.app.light {
+  background-color: #ffffff; /* Light mode background */
+  color: #000; /* Light mode text */
+}
+
+.app.dark {
+  background-color: #1c1c1c; /* Dark mode background */
+  color: #fff; /* Dark mode text */
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.toggle-container {
+  width: 80px; /* Width of the toggle */
+  height: 40px; /* Height of the toggle */
+  background-color: #ccc; /* Background color */
+  border-radius: 20px; /* Round corners */
+  position: relative;
+  cursor: pointer;
+  margin: 20px auto; /* Center the toggle */
+  transition: background-color 0.3s;
+}
+
+.toggle {
+  width: 40px; /* Width of the toggle circle */
+  height: 40px; /* Height of the toggle circle */
+  background-color: #f9f8f8; /* Circle color */
+  border-radius: 50%; /* Make it circular */
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s; /* Smooth transition */
+}
+
+.toggle.active {
+  transform: translateX(40px); /* Move circle to the right */
+  background-color: #fa6060; /* Active circle color */
+}
+
+.mode-icon {
+  width: 500px; /* Icon size */
+  height: 500px; /* Icon size */
+}

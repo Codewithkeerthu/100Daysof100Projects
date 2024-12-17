@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex justify-center items-center min-h-screen bg-cover bg-no-repeat  bg-center h-screen" style="background-image: url('image.jpeg')" >
+    <div class="bg-black text-white backdrop-blur-md bg-opacity-50  rounded-lg p-6 shadow-lg">
+        <h1 class="text-center text-2xl font-semibold mb-4">CALCULATOR</h1>
+        <input type="text" id="result" class="bg-gray-300 text-black rounded-lg p-5 mb-4 text-right text-xl " readonly />
+        <div class="grid grid-cols-4 gap-4" id="calcu" >
+            <button class="bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600" onclick="dis('%')">%</button>
+            <button class="bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600" onclick="dis('√')">√</button>
+            <button class="bg-red-500 text-white rounded-lg p-4 hover:bg-red-600" onclick="clr()">C</button>
+            <button class="bg-green-500 text-white rounded-lg p-4 hover:bg-green-600" onclick="solve()">=</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('7')">7</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('8')">8</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('9')">9</button>
+            <button class="bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-700" onclick="dis('-')">-</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('4')">4</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('5')">5</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('6')">6</button>
+            <button class="bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600" onclick="dis('/')">/</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('1')">1</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('2')">2</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('3')">3</button>
+            <button class="bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600" onclick="dis('*')">×</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('.')">.</button>
+            <button class="bg-gray-300 rounded-lg p-4 text-black hover:bg-gray-400" onclick="dis('0')">0</button>
+            <button class="bg-green-500 text-white rounded-lg p-4 hover:bg-green-600" onclick="solve()">=</button>
+            <button class="bg-blue-500 text-white rounded-lg p-4 hover:bg-blue-600" onclick="dis('+')">+</button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.2.0/math.min.js"></script>
+    <script>
+        function dis(val) { 
+            document.getElementById("result").value += val; 
+        } 
+      
+        var cal = document.getElementById("calcu"); 
+        //  In JavaScript, each key on the keyboard is associated with a unique numerical value known as a "key code."
+        cal.onkeyup = function (event) { 
+            if (event.keyCode === 13) { 
+                solve(); 
+            } 
+        }; 
+        function solve() { 
+            let x = document.getElementById("result").value; 
+            let y = math.evaluate(x); 
+            document.getElementById("result").value = y; 
+        } 
+        function clr() { 
+            document.getElementById("result").value = ""; 
+        } 
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url("bg1.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #495057;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:25%;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.3); 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+.card:hover {
+    transform: translateY(-10px); /* Lifts the card slightly on hover */
+    box-shadow: 0 6px 40px rgba(167, 4, 192, 0.5); /* Increases shadow for a more pronounced hover effect */
+}
+
+
+#stopwatchDisplay {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 3px solid #500874;
+    border-radius: 15px;
+    background: white;
+}
+
+#stopwatchDisplay:hover {
+    box-shadow: 0 6px 30px rgba(191, 0, 255, 0.5);
+}
+
+button {
+    padding: 15px 30px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #500874;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.3);
+}
+
+button:hover {
+    background-color: #2a053d;
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 1px 5px rgba(102, 2, 82, 0.3);
+}
+
+@media (max-width: 600px) {
+    #stopwatchDisplay {
+        font-size: 3rem;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
