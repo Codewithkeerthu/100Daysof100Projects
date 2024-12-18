@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+	        background-image:url("bg.jpg");
+            display: flex;
+            background-size: cover;
+            justify-content: flex-end;
+            padding:40px;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #a3d6f0;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-right: 200px;
+            width: 350px;
+            transition: transform 0.3s;
+        }
+
+        .container:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #009688;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            width: 90%;
+            border: 2px solid #009688;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #00796b;
+            outline: none;
+        }
+
+        button {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #009688, #00796b);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #00796b, #004d40);
+            transform: translateY(-2px);
+        }
+
+        #message {
+            margin: 20px 0;
+            font-weight: bold;
+            font-size: 18px;
+            height: 30px;
+        }
+
+        #restartButton {
+            display: none;
+            background: linear-gradient(135deg, #4caf50, #388e3c);
+        }
+
+        #restartButton:hover {
+            background: linear-gradient(135deg, #388e3c, #2e7d32);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 to 100:</p>
+        <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
+        <button id="guessButton">Guess</button>
+        <p id="message"></p>
+        <button id="restartButton">Play Again</button>
+    </div>
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+
+        document.getElementById('guessButton').addEventListener('click', function() {
+            const guessInput = document.getElementById('guessInput');
+            const message = document.getElementById('message');
+            const guess = parseInt(guessInput.value);
+            attempts++;
+
+            if (guess < 1 || guess > 100 || isNaN(guess)) {
+                message.textContent = "Please enter a number between 1 to 100.";
+                message.style.color = 'red';
+            } else if (guess < randomNumber) {
+                message.textContent = "Too low! Try again.";
+                message.style.color = 'red';
+                if (randomNumber - guess <= 5) {
+                    message.textContent = "Low but You're very close!";
+                }
+            } else if (guess > randomNumber) {
+                message.textContent = "Too high! Try again.";
+                message.style.color = 'red';
+                if (guess - randomNumber <= 5) {
+                    message.textContent = "High But You're very close!";
+                }
+            } else {
+                message.textContent = `Congratulations! You guessed it in ${attempts} attempts.`;
+                message.style.color = 'green';
+                document.getElementById('restartButton').style.display = "inline";
+                document.getElementById('guessButton').disabled = true;
+            }
+
+            guessInput.value = '';
+        });
+
+        
+        document.getElementById('restartButton').addEventListener('click', function() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('message').textContent = '';
+            document.getElementById('guessInput').value = '';
+            document.getElementById('restartButton').style.display = "none";
+            document.getElementById('guessButton').disabled = false;
+        });
+    </script>
+</body>
+</html>

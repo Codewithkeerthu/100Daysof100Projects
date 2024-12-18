@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  background-image: url('bg.jpeg');
+  background-size: cover;
+  align-items: center;
+  height: 100vh; 
+}
+
+.card {
+  background-color: rgb(7, 125, 250, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+}
+
+.header {
+  background-color: #007bff;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+}
+
+input {
+  width: calc(100% - 22px); /* Full width minus padding */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.addBtn {
+  padding: 10px;
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addBtn:hover {
+  background-color: #218838;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  background: #ffffff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+ul li:hover {
+  background: #f1f1f1;
+}
+
+ul li.checked {
+  background: #6c757d;
+  color: white;
+  text-decoration: line-through;
+}
+
+ul li .close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: #dc3545;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+  .card {
+    width: 90%;
+  }
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <h2>My To-Do List</h2>
+  </div>
+  <input type="text" id="myInput" placeholder="Add a new task...">
+  <button onclick="newElement()" class="addBtn">Add</button>
+  <ul id="myUL">
+    <li>Hit the gym<span class="close" onclick="this.parentElement.style.display='none';">x</span></li>
+    <li class="checked">Pay bills<span class="close" onclick="this.parentElement.style.display='none';">x</span></li>
+    <li>Meet George<span class="close" onclick="this.parentElement.style.display='none';">x</span></li>
+    <li>Buy eggs<span class="close" onclick="this.parentElement.style.display='none';">&times;</span></li>
+    <li>Read a book<span class="close" onclick="this.parentElement.style.display='none';">&times;</span></li>
+    <li>Organize office<span class="close" onclick="this.parentElement.style.display='none';">&times;</span></li>
+  </ul>
+</div>
+
+<script>
+
+document.querySelectorAll('ul li').forEach(item => {
+  item.addEventListener('click', function() {
+    this.classList.toggle('checked');
+  });
+});
+
+function newElement() {
+  var inputValue = document.getElementById("myInput").value.trim();
+  if (inputValue === '') {
+    alert("You must write something!");
+    return;
+  }
+  
+  var li = document.createElement("li");
+  li.textContent = inputValue;
+  li.addEventListener('click', function() {
+    this.classList.toggle('checked');
+  });
+
+  var span = document.createElement("SPAN");
+  span.className = "close";
+  span.innerHTML = "&times;";
+  span.onclick = function() {
+    li.style.display = "none";
+  };
+  
+  li.appendChild(span);
+  document.getElementById("myUL").appendChild(li);
+  document.getElementById("myInput").value = ""; // Clear input field
+}
+</script>
+
+</body>
+</html>

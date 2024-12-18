@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Love Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url(bg.avif);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+            color:whitesmoke
+        }
+
+        header {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .card-header {
+            background-color: #f50a31;
+            color: white;
+            margin: 30px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 15px;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-footer {
+           
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            padding: 15px;
+            font-size: 0.9rem;
+            color: #f3f1f1;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+        }
+
+        button {
+            background-color: #093a14;
+            color: white;
+            width:50px !important;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        input[type="text"] {
+            text-align: center;
+        }
+
+        .quote-box {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            padding: 10px;
+            border-left: 4px solid #ff6b6b;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .quote-box.positive {
+            border-color: #28a745;
+        }
+
+        .quote-box.motivational {
+            border-color: #ffc107;
+        }
+
+        .quote-box.advice {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="card w-50 m-auto text-center">
+            <h1 class="card-header">LOVE CALCULATOR</h1>
+            <div class="card-body">
+                <form class="form-inline w-75 m-auto">
+                    <div class="form-group">
+                        <input type="text" name="" class="form-control text-center" placeholder="Your Name" id="name">
+                    </div>
+                    <div class="pl-4 pr-4">
+                        <span> + </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="" class="form-control text-center" placeholder="Partner Name" id="lname">
+                    </div>
+                </form> <br>
+                <div class="w-50 m-auto">
+                    <button class="btn btn-success w-50" onclick="checkloveper()">Calculate</button>
+                </div>
+                <br>
+                <div>
+                    <input type="text" name="" placeholder="PERCENTAGE" class="form-control text-center w-25 m-auto" id="lovevalue" readonly>
+                </div>
+                <br>
+                <div id="quote" class="quote-box text-center font-weight-bold"></div>
+            </div>
+            <div class="card-footer">Pleasure Of Living Is Loving </div>
+        </div>
+    </header>
+
+    <script>
+        function checkloveper() {
+            var name = document.getElementById('name').value;
+            var lname = document.getElementById('lname').value;
+
+            if (name == "") {
+                alert('Please enter your name');
+            } else if (name.length <= 2) {
+                alert('Min length is 3');
+            } else if (!isNaN(name)) {
+                alert('Numbers are not allowed');
+            } else if (lname == "") {
+                alert('Please enter your love name');
+            } else if (lname.length <= 2) {
+                alert('Min length is 3');
+            } else if (!isNaN(lname)) {
+                alert('Numbers are not allowed');
+            } else {
+                var lovdata = calculateLovePercentage(name, lname);
+
+                // Ensure love percentage is never below 40%
+                if (lovdata < 40) {
+                    lovdata = 40;
+                }
+
+                document.getElementById('lovevalue').value = lovdata + "%";
+
+                var quoteText = "";
+                var quoteClass = "";
+                if (lovdata > 80) {
+                    quoteText = "You two are a perfect match! 💖 'True love stories never have endings.'";
+                    quoteClass = "positive";
+                } else if (lovdata > 60) {
+                    quoteText = "Good vibes here! 🌟 'Love is not about how much you say I love you, but how much you can prove it's true.'";
+                    quoteClass = "motivational";
+                } else if (lovdata >= 40) {
+                    quoteText = "Keep nurturing your bond! 💬 'A successful relationship requires falling in love multiple times, always with the same person.'";
+                    quoteClass = "advice";
+                }
+
+                var quoteBox = document.getElementById('quote');
+                quoteBox.innerHTML = quoteText;
+                quoteBox.className = "quote-box " + quoteClass;
+            }
+        }
+
+        // Logic to calculate love percentage based on name lengths
+        function calculateLovePercentage(name, lname) {
+        
+            var nameLength = name.length;
+            var lnameLength = lname.length;
+
+            // Calculate a base percentage using name lengths
+            var basePercentage = (nameLength + lnameLength) * 5;
+
+            // Add a random factor for variety, but keep total within 100
+            var randomFactor = Math.floor(Math.random() * 20);
+            var finalPercentage = basePercentage + randomFactor;
+
+            // Ensure it doesn't exceed 100%
+            return Math.min(finalPercentage, 100);
+        }
+    </script>
+
+</body>
+
+</html>

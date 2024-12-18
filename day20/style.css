@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  background-image: url('bg.jpg');
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  width: 450px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0e2e62, #158934 );
+  padding: 28px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.wrapper:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper h2 {
+  margin-bottom: 20px; 
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.pass-field {
+  height: 65px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px; 
+}
+
+.pass-field input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  padding: 0 17px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: 1px solid #999;
+  transition: border 0.3s ease;
+}
+
+.pass-field input:focus {
+  padding: 0 16px;
+  border: 2px solid #0f0f0f;
+  box-shadow: 0 0 5px rgba(66, 133, 244, 0.7); 
+}
+
+.pass-field i {
+  right: 18px;
+  top: 50%;
+  font-size: 1.2rem;
+  color: #999;
+  cursor: pointer;
+  position: absolute;
+  transform: translateY(-50%);
+  transition: color 0.3s ease;
+}
+
+.pass-field i:hover {
+  color: #42dff4; /* Change icon color on hover */
+}
+
+.content {
+  margin: 20px 0 10px;
+}
+
+.content p {
+  color: #540505;
+  font-size: 1.3rem;
+}
+
+.content .requirement-list {
+  margin-top: 20px;
+}
+
+.requirement-list li {
+  font-size: 1.3rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.requirement-list li i {
+  width: 20px;
+  color: #aaa;
+  font-size: 0.6rem;
+}
+
+.requirement-list li.valid i {
+  font-size: 1.2rem;
+  color: #4285F4;
+}
+
+.requirement-list li span {
+  margin-left: 12px;
+  color: #333;
+}
+
+.requirement-list li.valid span {
+  color: #999;
+}
+
+/* Button Styles */
+.button {
+  background-color: #4285F4; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Button padding */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 1rem; /* Font size for button text */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  margin-top: 20px; /* Space above button */
+}
+
+.button:hover {
+  background-color: #34A853; /* Change color on hover */
+}
+
+@media screen and (max-width: 500px) {
+  body,
+  .wrapper {
+    padding: 15px;
+  }
+
+  .wrapper .pass-field {
+    height: 55px;
+  }
+
+  .pass-field input,
+  .content p {
+    font-size: 1.15rem;
+  }
+
+  .pass-field i,
+  .requirement-list li {
+    font-size: 1.1rem;
+  }
+
+  .requirement-list li span {
+    margin-left: 7px;
+  }
+}
