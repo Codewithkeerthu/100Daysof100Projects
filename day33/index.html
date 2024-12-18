@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Temperature Converter</title>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		body {
+			background-color: #acc5f0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 100vh;
+		}
+
+		.container {
+			width: 90%;
+			max-width: 600px;
+			background-image: linear-gradient(135deg, #a1b9e9, #1d5a7d);
+			border-radius: 15px;
+			padding: 30px;
+			box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			color: #fff;
+			text-align: center;
+		}
+
+		.container h1 {
+			font-size: 28px;
+			font-weight: bold;
+			margin-bottom: 20px;
+			color: #ffffff;
+			text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		}
+
+		.converter-row {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			align-items: center;
+			background-color: #002e4a;
+			border-radius: 10px;
+			padding: 20px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		}
+
+		.col {
+			flex-basis: 30%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.col label {
+			font-size: 16px;
+			font-weight: 600;
+			margin-bottom: 8px;
+			color: #f2f2f2;
+			text-transform: uppercase;
+		}
+
+		.col input {
+			width: 100%;
+			max-width: 150px;
+			padding: 8px;
+			border: none;
+			border-radius: 5px;
+			background-color: #fff;
+			color: #333;
+			font-size: 16px;
+			text-align: center;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+			transition: box-shadow 0.3s;
+		}
+
+		.col input:focus {
+			outline: none;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Temperature Converter</h1>
+		<div class="converter-row">
+			<div class="col">
+				<label>Fahrenheit</label>
+				<input type="number" id="fahrenheit" placeholder="°F">
+			</div>
+
+			<div class="col">
+				<label>Celsius</label>
+				<input type="number" id="celsius" placeholder="°C">
+			</div>
+
+			<div class="col">
+				<label>Kelvin</label>
+				<input type="number" id="kelvin" placeholder="K">
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const celsius = document.getElementById('celsius');
+		const fahrenheit = document.getElementById('fahrenheit');
+		const kelvin = document.getElementById('kelvin');
+
+		celsius.oninput = function () {
+			let f = (parseFloat(celsius.value) * 9) / 5 + 32;
+			fahrenheit.value = parseFloat(f.toFixed(2));
+
+			let k = (parseFloat(celsius.value) + 273.15);
+			kelvin.value = parseFloat(k.toFixed(2));
+		};
+
+		fahrenheit.oninput = function () {
+			let c = ((parseFloat(fahrenheit.value) - 32) * 5) / 9;
+			celsius.value = parseFloat(c.toFixed(2));
+
+			let k = (parseFloat(fahrenheit.value) - 32) * 5 / 9 + 273.15;
+			kelvin.value = parseFloat(k.toFixed(2));
+		};
+
+		kelvin.oninput = function () {
+			let f = (parseFloat(kelvin.value) - 273.15) * 9 / 5 + 32;
+			fahrenheit.value = parseFloat(f.toFixed(2));
+
+			let c = (parseFloat(kelvin.value) - 273.15);
+			celsius.value = parseFloat(c.toFixed(2));
+		};
+	</script>
+</body>
+
+</html>

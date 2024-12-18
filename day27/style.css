@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: linear-gradient(135deg, #243949 10%, #517fa4 100%);
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+canvas {
+  border: 2px solid steelblue;
+  border-radius: 8px;
+  background-color: #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toolbox {
+  background-color: #4682B4; /* Adjusted steelblue for a sleeker look */
+  border: 1px solid #6A5ACD; /* Slateblue */
+  display: flex;
+  width: 100%;
+  max-width: 820px;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.toolbox > * {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  height: 50px;
+  width: 50px;
+  margin: 0.5rem;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 50%; /* Round buttons for a modern touch */
+}
+
+.toolbox > *:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05); /* Slight hover effect */
+}
+
+.toolbox > *:last-child {
+  margin-left: auto;
+}
+
+.toolbox > *:active {
+  background-color: #e0e0e0;
+}
