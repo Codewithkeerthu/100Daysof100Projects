@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Emoji Hover Project</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,99,121,1) 35%, rgba(0,212,255,1) 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-weight: bold;
+      color: #222;
+    }
+
+    .emoji-container {
+      font-size: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .emoji {
+      margin: 0 15px;
+      cursor: pointer;
+      transition: transform 0.3s, text-shadow 0.3s ease;
+    }
+
+    .emoji:hover {
+      transform: scale(1.5);
+      text-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+    }
+
+    .output {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 12px;
+      border: 3px solid #ccc;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-size: 1.2rem;
+    }
+
+    .output h2 {
+      font-size: 2rem;
+      color: #4CAF50;
+    }
+
+    .output p {
+      color: #555;
+    }
+
+    .reset-button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .reset-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Emoji Hover</h1>
+
+  <div class="emoji-container">
+    <span id="hover-emoji" class="emoji">😊</span>
+  </div>
+
+  <!-- Output section for key events -->
+  <div id="key-event-output" class="output">
+    <h2>Keyboard Events:</h2>
+    <p>Press or release a key and observe the output here.</p>
+  </div>
+
+  <!-- Reset Button -->
+  <button id="reset-btn" class="reset-button">Reset Events</button>
+  <script>
+    const hoverEmoji = document.getElementById('hover-emoji');
+    const keyEventOutput = document.getElementById('key-event-output');
+    const resetButton = document.getElementById('reset-btn');
+  
+    hoverEmoji.addEventListener('mouseover', () => {
+      hoverEmoji.textContent = '😄';
+    });
+  
+    hoverEmoji.addEventListener('mouseout', () => {
+      hoverEmoji.textContent = '😊';
+    });
+  
+    window.addEventListener('keydown', (event) => {
+      keyEventOutput.innerHTML = `
+        <h2>Keyboard Events:</h2>
+        <p><strong>Key Pressed:</strong> ${event.key}</p>
+        <p><strong>Key Code:</strong> ${event.keyCode}</p>
+      `;
+    });
+  
+    window.addEventListener('keyup', (event) => {
+      keyEventOutput.innerHTML += `
+        <p><strong>Key Released:</strong> ${event.key}</p>
+        <p><strong>Key Code:</strong> ${event.keyCode}</p>
+      `;
+    });
+  
+    resetButton.addEventListener('click', () => {
+      hoverEmoji.textContent = '😊';
+      keyEventOutput.innerHTML = `
+        <h2>Keyboard Events:</h2>
+        <p>Press or release a key and observe the output here.</p>
+      `;
+    });
+  </script>
+  
+
+</body>
+</html>
+
+
